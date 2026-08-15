@@ -1,0 +1,77 @@
+{
+    "name": "electron-vite-svelte",
+    "version": "1.0.0",
+    "description": "Electron + Svelte + TypeScript application",
+    "keywords": [
+        "electron",
+        "svelte",
+        "typescript"
+    ],
+    "license": "MIT",
+    "author": "",
+    "type": "module",
+    "main": "dist-electron/main/index.js",
+    "scripts": {
+        "dev": "vite",
+        "dev:h5": "VITE_TYPE=h5 vite",
+        "build": "vite build",
+        "build:h5": "VITE_TYPE=h5 vite build",
+        "commit": "git add . && cz",
+        "pull": "git pull",
+        "push": "git push",
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check",
+        "img2avif": "node scripts/img2avif/index.cjs",
+        "preview": "vite preview",
+        "prepare": "lefthook install -f"
+    },
+    "dependencies": {
+        "sass": "^1.102.0"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.62.1",
+        "@sveltejs/vite-plugin-svelte": "^7.3.0",
+        "@tailwindcss/vite": "^4.3.3",
+        "@tsconfig/svelte": "^5.0.8",
+        "@types/node": "^26.2.0",
+        "autoprefixer": "^10.5.4",
+        "commitizen": "^4.3.2",
+        "commitlint": "^21.2.2",
+        "concurrently": "^9.0.0",
+        "cz-git": "^1.13.2",
+        "electron": "43.2.0",
+        "electron-builder": "^25.0.0",
+        "electron-updater": "^6.8.9",
+        "lefthook": "^2.1.10",
+        "oxfmt": "^0.63.0",
+        "oxlint": "^0.15.0",
+        "postcss": "^8.5.26",
+        "postcss-pxtorem": "^6.1.0",
+        "sharp": "^0.35.3",
+        "svelte": "^5.56.9",
+        "svelte-check": "^4.7.6",
+        "tailwindcss": "^4.3.3",
+        "typescript": "^7.0.2",
+        "vite": "^8.2.1",
+        "vite-plugin-electron": "^1.1.1",
+        "vite-plugin-electron-renderer": "^1.0.0",
+        "vitest": "^4.1.10"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-git",
+            "useEmoji": true
+        }
+    },
+    "build": {
+        "appId": "com.electron.svelte.app",
+        "files": [
+            "dist/**/*"
+        ],
+        "directories": {
+            "output": "release"
+        }
+    }
+}

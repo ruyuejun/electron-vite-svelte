@@ -1,0 +1,49 @@
+pre-commit:
+    commands:
+        lint-check:
+            glob: '*.{js,ts,cjs,mjs,d.cts,d.mts,vue,jsx,tsx,json,jsonc,css,scss}'
+            run: pnpx @biomejs/biome lint --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+            #   run: pnpm run lint:fix
+            stage_fixed: true
+
+commit-msg:
+    commands:
+        commit-check:
+            run: |
+                echo "🔍 Validating commit message format with commitlint..."
+                if ! pnpx commitlint --edit "$1"; then
+                  echo ""
+                  echo "❌ Validation failed: ensure the format is <type>(<scope>): <subject>"
+                  echo "The scope must be selected from the predefined list."
+                  exit 1
+                fi
+                echo "✅ Validation passed"
+
+# lefthook.yml
+pre-push:
+    parallel: false
+    piped: true
+    commands:
+        build-check:
+            run: |
+                echo "📦 Starting build check..."
+
+                # Check whether frontend-related files have changed
+                CHANGED_FILES=$(git diff --name-only HEAD @{u} 2>/dev/null || git diff --name-only HEAD origin/main)
+                if echo "$CHANGED_FILES" | grep -qE '\.(js|ts|vue|jsx|tsx|svelte|css|scss|html|json)$'; then
+                  echo "Frontend file changes detected; running the build check..."
+                  if ! pnpm run build; then
+                    echo ""
+                    echo "========================================"
+                    echo "❌ Build failed; pushing is blocked!"
+                    echo "Fix the build errors first:"
+                    echo "1. Run 'pnpm run build' to inspect the errors"
+                    echo "2. Fix all TypeScript and syntax errors"
+                    echo "3. Ensure all dependencies are installed"
+                    echo "========================================"
+                    exit 1
+                  fi
+                  echo "✅ Build check passed"
+                else
+                  echo "No frontend file changes detected; skipping the build check"
+                fi

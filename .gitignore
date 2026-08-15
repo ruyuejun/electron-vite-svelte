@@ -1,0 +1,63 @@
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# project
+# dist-electron
+.vite
+out
+release
+dist
+node_modules
+dist
+dist-ssr
+dist-electron
+.husky
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# nodejs
+node_modules
+coverage
+*.local
+pnpm-lock.yaml
+pnpm-lock.json
+npm-lock.json
+yarn-lock.json
+package-lock.json
+
+# bun
+**/*.bun
+bun.lockb
+.bun-build/
+
+# cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Editor directories and files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# mac
+.DS_Store
+

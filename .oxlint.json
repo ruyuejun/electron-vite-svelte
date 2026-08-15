@@ -1,0 +1,9 @@
+{
+    "svelte": true,
+    "rules": {
+        "typescript": "error",
+        "import": "error",
+        "svelte": "error"
+    },
+    "ignore_patterns": ["node_modules", "dist", "release"]
+}
