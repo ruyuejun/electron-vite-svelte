@@ -1,9 +1,9 @@
 pre-commit:
     commands:
         lint-check:
-            glob: '*.{js,ts,cjs,mjs,d.cts,d.mts,vue,jsx,tsx,json,jsonc,css,scss}'
-            run: pnpx @biomejs/biome lint --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
-            #   run: pnpm run lint:fix
+            glob: '*.{js,ts,cjs,mjs,jsx,tsx,svelte}'
+            exclude: '.svelte-kit/|node_modules/|dist/|build/'
+            run: pnpm run lint:fix -- {staged_files}
             stage_fixed: true
 
 commit-msg:
@@ -11,7 +11,7 @@ commit-msg:
         commit-check:
             run: |
                 echo "🔍 Validating commit message format with commitlint..."
-                if ! pnpx commitlint --edit "$1"; then
+                if ! node_modules/.bin/commitlint --edit "$1"; then
                   echo ""
                   echo "❌ Validation failed: ensure the format is <type>(<scope>): <subject>"
                   echo "The scope must be selected from the predefined list."
