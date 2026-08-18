@@ -7,6 +7,6 @@
     onMount(() => {})
 </script>
 
-<div class="relative z-10 flex min-h-screen">
+<div class="min-h-screen w-full">
     {@render children()}
 </div>

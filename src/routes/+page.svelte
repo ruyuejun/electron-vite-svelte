@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<div class="flex flex-col items-center justify-center min-h-screen bg-linear-to-br from-ink-50 to-brand-50 p-8">
+<div class="flex flex-col items-center justify-center min-h-screen w-full bg-linear-to-br from-ink-50 to-brand-50 p-8">
     <div class="max-w-4xl w-full space-y-8 text-center">
         <div class="space-y-4">
             <h1 class="text-5xl font-bold text-brand-700">欢迎使用 Electron + Svelte</h1>
