@@ -26,6 +26,7 @@ The template includes a practical development workflow with code quality checks,
 - Node.js 20 or newer
 - pnpm 9 or newer
 - Git
+- Python 3.12 or newer
 
 Check your installed versions:
 
@@ -33,6 +34,7 @@ Check your installed versions:
 node --version
 pnpm --version
 git --version
+python -V
 ```
 
 ## Getting Started
@@ -85,60 +87,18 @@ pnpm preview
 
 The production build output is generated in the `dist` directory. Electron packaging output is configured to use the `release` directory.
 
-## Hooks
+If you cann't download the dmgbuild-bundle, you can set mirror like this：
 
-This project uses [Lefthook](https://github.com/evilmartians/lefthook) to run checks automatically during Git operations. The hooks are installed by the `prepare` script when dependencies are installed:
+```txt
+# Mac
+export ELECTRON_BUILDER_BINARIES_MIRROR="https://cdn.npmmirror.com/binaries/electron-builder-binaries"
 
-```bash
-pnpm install
+# Windows (CMD)
+set ELECTRON_BUILDER_BINARIES_MIRROR="https://cdn.npmmirror.com/binaries/electron-builder-binaries"
+
+# Windows (PowerShell)
+$env:ELECTRON_BUILDER_BINARIES_MIRROR="https://cdn.npmmirror.com/binaries/electron-builder-binaries"
 ```
-
-To install or refresh the hooks manually, run:
-
-```bash
-pnpm prepare
-```
-
-### `pre-commit`
-
-Runs before a commit is created. It lints the staged JavaScript, TypeScript, JSON, CSS, and Sass files. If a hook command modifies a staged file, Lefthook stages the updated file automatically.
-
-```bash
-lefthook run pre-commit
-```
-
-### `commit-msg`
-
-Runs after a commit message is entered and validates it with Commitlint. Commit messages must use the configured Conventional Commits format:
-
-```text
-<type>(<scope>): <subject>
-```
-
-The easiest way to create a valid commit is to use the interactive Commitizen prompt:
-
-```bash
-pnpm commit
-```
-
-### `pre-push`
-
-Runs before changes are pushed to a remote repository. When frontend-related files have changed, it runs a production build and blocks the push if the build fails. If no matching frontend files have changed, the build check is skipped.
-
-```bash
-lefthook run pre-push
-```
-
-### Bypassing Hooks
-
-Only bypass hooks when you understand the consequences. Use Git's `--no-verify` option when a bypass is required:
-
-```bash
-git commit --no-verify
-git push --no-verify
-```
-
-The hook configuration is stored in [`lefthook.yml`](lefthook.yml).
 
 ## Available Scripts
 
@@ -178,22 +138,6 @@ The hook configuration is stored in [`lefthook.yml`](lefthook.yml).
 ├── tsconfig.json
 └── vite.config.ts
 ```
-
-## Environment Variables
-
-Environment files are loaded by Vite according to the current mode. Variables exposed to the renderer should use the `VITE_` prefix.
-
-Example development configuration:
-
-```dotenv
-VITE_NODE_ENV=development
-VITE_HOST=http://localhost:6163
-VITE_HOST_MSGWS=ws://localhost:6163
-VITE_HOST_WS=http://localhost:6163
-VITE_TOKEN=
-```
-
-Do not commit real tokens, credentials, or other sensitive values to the repository.
 
 ## Code Quality and Git Hooks
 

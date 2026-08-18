@@ -1,7 +1,8 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import { join } from 'node:path'
 import { watch, type FSWatcher } from 'node:fs'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+// import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
 import electronSimple from 'vite-plugin-electron/simple'
 import { promisify } from 'node:util'
@@ -74,15 +75,16 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), 'VITE_')
 
     return {
-        root: join(__dirname, 'src'),
-        base: './',
+        // base: join(__dirname, 'src'),
+        // base: './',
         resolve: {
             alias: {
                 '@': join(__dirname, 'src'),
             },
         },
         plugins: [
-            svelte(),
+            // svelte(),
+            sveltekit(),
             tailwindcss(),
             autoImg2AvifPlugin(),
             isH5
@@ -98,6 +100,12 @@ export default defineConfig(({ mode }) => {
                                   sourcemap,
                                   minify: isProduction,
                                   outDir: join(__dirname, 'dist-electron/main'),
+                                  rollupOptions: {
+                                      output: {
+                                          format: 'cjs',
+                                          entryFileNames: '[name].cjs',
+                                      },
+                                  },
                               },
                           },
                       },
@@ -120,16 +128,10 @@ export default defineConfig(({ mode }) => {
                 },
             },
         },
-        build: {
-            outDir: join(__dirname, 'dist'),
-            emptyOutDir: true,
-            rollupOptions: {
-                input: 'index.html',
-                output: {
-                    format: 'es',
-                },
-            },
-        },
+        // build: {
+        //     outDir: join(__dirname, 'dist'),
+        //     emptyOutDir: true,
+        // },
         server: {
             port: 3000,
             host: '0.0.0.0',

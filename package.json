@@ -12,13 +12,19 @@
     "type": "module",
     "main": "dist-electron/main/index.js",
     "scripts": {
-        "dev": "vite",
-        "dev:h5": "VITE_TYPE=h5 vite",
-        "build": "vite build",
+        "dev": "VITE_TYPE=desktop vite dev",
+        "dev:h5": "VITE_TYPE=h5 vite dev",
+        "build": "VITE_TYPE=desktop vite build && electron-builder --publish never",
         "build:h5": "VITE_TYPE=h5 vite build",
+        "pack:win": "VITE_TYPE=desktop vite build && electron-builder --win --publish never",
+        "pack:win32": "VITE_TYPE=desktop vite build && electron-builder --win --ia32 --publish never",
+        "pack:mac": "VITE_TYPE=desktop vite build && electron-builder --mac --publish never",
+        "pack:linux": "VITE_TYPE=desktop vite build && electron-builder --linux --publish never",
         "commit": "git add . && cz",
         "pull": "git pull",
         "push": "git push",
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "lint": "oxlint",
         "lint:fix": "oxlint --fix",
         "format": "oxfmt",
@@ -32,6 +38,9 @@
     },
     "devDependencies": {
         "@playwright/test": "^1.62.1",
+        "@sveltejs/adapter-auto": "^3.3.1",
+        "@sveltejs/adapter-static": "^3.0.10",
+        "@sveltejs/kit": "^2.70.2",
         "@sveltejs/vite-plugin-svelte": "^7.3.0",
         "@tailwindcss/vite": "^4.3.3",
         "@tsconfig/svelte": "^5.0.8",
@@ -68,7 +77,9 @@
     "build": {
         "appId": "com.electron.svelte.app",
         "files": [
-            "dist/**/*"
+            "dist/**/*",
+            "dist-electron/**/*",
+            "package.json"
         ],
         "directories": {
             "output": "release"

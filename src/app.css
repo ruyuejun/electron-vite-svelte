@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@theme {
+    --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+
+    /* ── Brand palette (brand = primary accent per theme) ── */
+    --color-brand-50: #eef2ff;
+    --color-brand-100: #e0e7ff;
+    --color-brand-200: #c7d2fe;
+    --color-brand-300: #a5b4fc;
+    --color-brand-400: #818cf8;
+    --color-brand-500: #6366f1;
+    --color-brand-600: #4f46e5;
+    --color-brand-700: #4338ca;
+    --color-brand-800: #3730a3;
+    --color-brand-900: #312e81;
+
+    /* ── Accent palette ────────────────────────────────────── */
+    --color-acc-blue: #3b82f6;
+    --color-acc-violet: #7c3aed;
+    --color-acc-cyan: #06b6d4;
+    --color-acc-emerald: #10b981;
+    --color-acc-orange: #f59e0b;
+    --color-acc-rose: #f43f5e;
+
+    /* ── Neutral ink scale ────────────────────────────────── */
+    --color-ink-950: #0f1117;
+    --color-ink-900: #1e2337;
+    --color-ink-800: #2d3350;
+    --color-ink-700: #454c6a;
+    --color-ink-600: #5a6075;
+    --color-ink-500: #6b7280;
+    --color-ink-400: #9ca3af;
+    --color-ink-300: #d1d5db;
+    --color-ink-200: #e5e7eb;
+    --color-ink-100: #f3f4f6;
+    --color-ink-50: #f9fafb;
+
+    /* ── Shadows ───────────────────────────────────────────── */
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.05);
+    --shadow-float: 0 4px 18px rgba(99, 102, 241, 0.18);
+    --shadow-glass: 0 4px 24px rgba(15, 17, 40, 0.07);
+    --shadow-glass-lg: 0 12px 40px rgba(15, 17, 40, 0.1);
+}
+
+:root {
+    color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
