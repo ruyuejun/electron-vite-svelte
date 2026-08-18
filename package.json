@@ -1,13 +1,9 @@
 {
-    "name": "electron-vite-svelte",
+    "name": "template-electron-svelte",
     "version": "1.0.0",
-    "description": "Electron + Svelte + TypeScript application",
-    "keywords": [
-        "electron",
-        "svelte",
-        "typescript"
-    ],
-    "license": "MIT",
+    "description": "editor",
+    "keywords": [],
+    "license": "",
     "author": "",
     "type": "module",
     "main": "dist-electron/main/index.js",
@@ -34,7 +30,18 @@
         "prepare": "lefthook install -f"
     },
     "dependencies": {
-        "sass": "^1.102.0"
+        "@lucide/svelte": "^1.31.0",
+        "@tiptap/core": "^3.30.0",
+        "@tiptap/extension-bubble-menu": "^3.30.0",
+        "@tiptap/extension-image": "^3.30.0",
+        "@tiptap/extension-link": "^3.30.0",
+        "@tiptap/extension-placeholder": "^3.30.0",
+        "@tiptap/extension-text-align": "^3.30.0",
+        "@tiptap/extension-underline": "^3.30.0",
+        "@tiptap/pm": "^3.30.0",
+        "@tiptap/starter-kit": "^3.30.0",
+        "sass": "^1.102.0",
+        "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
         "@playwright/test": "^1.62.1",
@@ -51,7 +58,7 @@
         "concurrently": "^9.0.0",
         "cz-git": "^1.13.2",
         "electron": "43.2.0",
-        "electron-builder": "^25.0.0",
+        "electron-builder": "^26.15.3",
         "electron-updater": "^6.8.9",
         "lefthook": "^2.1.10",
         "oxfmt": "^0.63.0",
